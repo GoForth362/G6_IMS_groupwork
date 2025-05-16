@@ -1,10 +1,11 @@
 package ShapeManagement.bouncebox;
 
 import ShapeManagement.bounceboxframework.*;
+import ShapeManagement.bounceboxframework.Shape;
 
 import java.awt.*;
 
-public class Rectangle extends Shape{
+public class Rectangle extends Shape {
     private double contactRadius;
     private int width;
     private int height;

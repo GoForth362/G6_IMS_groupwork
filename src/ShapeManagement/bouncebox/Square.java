@@ -6,6 +6,7 @@
 package ShapeManagement.bouncebox;
 
 import ShapeManagement.bounceboxframework.*;
+import ShapeManagement.bounceboxframework.Shape;
 
 import java.awt.*;
 

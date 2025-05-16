@@ -6,13 +6,10 @@
 package ShapeManagement.bouncebox;
 
 import ShapeManagement.bounceboxframework.*;
+import ShapeManagement.bounceboxframework.Shape;
 
 import java.awt.*;
 
-/**
- *
- * @author ashongtical
- */
 public class Circle extends Shape {
     
     private int r;

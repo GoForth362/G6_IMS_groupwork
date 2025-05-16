@@ -6,10 +6,7 @@
 package ShapeManagement.bouncebox;
 
 import ShapeManagement.bounceboxframework.*;
-/**
- *
- * @author ashongtical
- */
+
 public class BounceBox {
     BounceModel model;
     BounceView view;

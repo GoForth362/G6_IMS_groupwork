@@ -1,7 +1,7 @@
 package GUI;
 
 import javax.swing.*;
-import javax.swing.plaf.metal.MetalLookAndFeel;
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -9,7 +9,7 @@ import java.awt.event.WindowEvent;
 public class gui{
     public static void main(String[] args) throws Exception {
         //Theme
-        UIManager.setLookAndFeel(new MetalLookAndFeel());
+        FlatMacLightLaf.setup();
         //Initialization window
         JFrame frame = new JFrame("Integrated Management System (IMS)");
         frame.setSize(800,400);

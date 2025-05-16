@@ -1,10 +1,11 @@
 package ShapeManagement.bouncebox;
 
 import ShapeManagement.bounceboxframework.*;
+import ShapeManagement.bounceboxframework.Shape;
 
 import java.awt.*;
 
-public class Triangle extends Shape{
+public class Triangle extends Shape {
     private int base;
     private int height;
     private double contactRadius;
