@@ -1,11 +1,9 @@
 package ShapeManagement.bouncebox;
 
-import ShapeManagement.bounceboxframework.*;
 import ShapeManagement.bounceboxframework.Shape;
+import java.awt.Graphics2D;
 
-import java.awt.*;
-
-public class Triangle extends Shape {
+public class Triangle extends Shape{
     private int base;
     private int height;
     private double contactRadius;
@@ -32,6 +30,11 @@ public class Triangle extends Shape {
     @Override
     public double getMass() {
         return this.base * this.height / 2.0;
+    }
+
+    @Override
+    public double getArea() {
+        return 0.5 * base * height;
     }
 
     @Override

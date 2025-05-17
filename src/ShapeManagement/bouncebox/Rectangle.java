@@ -1,11 +1,9 @@
 package ShapeManagement.bouncebox;
 
-import ShapeManagement.bounceboxframework.*;
 import ShapeManagement.bounceboxframework.Shape;
+import java.awt.Graphics2D;
 
-import java.awt.*;
-
-public class Rectangle extends Shape {
+public class Rectangle extends Shape{
     private double contactRadius;
     private int width;
     private int height;
@@ -32,6 +30,11 @@ public class Rectangle extends Shape {
     @Override
     public double getMass() {
         return this.height * this.width;
+    }
+
+    @Override
+    public double getArea() {
+        return width * height;
     }
 
     @Override

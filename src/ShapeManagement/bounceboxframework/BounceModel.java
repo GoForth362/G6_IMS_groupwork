@@ -5,14 +5,10 @@
 
 package ShapeManagement.bounceboxframework;
 
-import java.util.LinkedList;
 import java.util.List;
+import java.util.LinkedList;
 import java.util.Observable;
 
-/**
- *
- * @author ashongtical
- */
 public class BounceModel extends Observable {
     
     private List<Shape> shapes  = new LinkedList<Shape>();
@@ -44,4 +40,9 @@ public class BounceModel extends Observable {
        setChanged();
         notifyObservers();
     }
+
+    public List<Shape> getShapes() {
+    return shapes;
+    }
+
 }

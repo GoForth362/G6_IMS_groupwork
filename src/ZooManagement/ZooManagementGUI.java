@@ -25,13 +25,6 @@ public class ZooManagementGUI extends JFrame{
         initializeZoos();
     }
 
-//    public static void main(String[] args) {
-//
-//        SwingUtilities.invokeLater(() -> {
-//            new ZooManagementGUI().setVisible(true);
-//        });
-//    }
-
     private static void initializeZoos() {
         southernZone.addAnimal(new Animal("Simba", "African Lion", 6));
         southernZone.addAnimal(new Animal("Dumbo", "African Elephant", 12));

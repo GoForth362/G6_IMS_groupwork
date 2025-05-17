@@ -5,12 +5,8 @@
 
 package ShapeManagement.bounceboxframework;
 
-import java.awt.*;
+import java.awt.Graphics2D;
 
-/**
- *
- * @author ashongtical
- */
 public interface Drawable {
     public  void draw(Graphics2D g);
 }
