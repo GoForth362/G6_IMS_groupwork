@@ -4,7 +4,10 @@ import javax.swing.*;
 
 import BankingTaskManagement.BankingTaskListGUI;
 import RestaurantManagement.RestaurantManagementGUI;
+<<<<<<< HEAD
 import ZooManagement.ZooManagementGUI;
+=======
+>>>>>>> origin/bank
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -48,6 +51,7 @@ public class gui{
         JButton button4 = new JButton("Shape Parsing & Analysis");
         frame.add(button4);
 
+<<<<<<< HEAD
         button1.addActionListener(e -> {
             ZooManagementGUI zooGUI = new ZooManagementGUI();
             zooGUI.setVisible(true);
@@ -133,6 +137,25 @@ public class gui{
                     }
                 });
 
+=======
+        button3.addActionListener(e -> {
+            SwingUtilities.invokeLater(() -> {
+                BankingTaskListGUI bankGUI = new BankingTaskListGUI();
+                bankGUI.setVisible(true);
+
+                //退出提示
+                bankGUI.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+                bankGUI.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        int value = JOptionPane.showConfirmDialog(bankGUI,"Do you want to exit?","Hint",JOptionPane.YES_NO_OPTION);
+                        if (value == JOptionPane.OK_OPTION){
+                            bankGUI.dispose();
+                        }
+                    }
+                });
+
+>>>>>>> origin/bank
             });
         });
         frame.setVisible(true);
