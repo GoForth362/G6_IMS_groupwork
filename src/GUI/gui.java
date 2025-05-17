@@ -49,7 +49,7 @@ public class gui{
         JButton button4 = new JButton("Shape Parsing & Analysis");
         frame.add(button4);
 
-<<<<<<< HEAD
+
         button1.addActionListener(e -> {
             ZooManagementGUI zooGUI = new ZooManagementGUI();
             zooGUI.setVisible(true);
@@ -70,13 +70,12 @@ public class gui{
 
         });
 
-=======
->>>>>>> origin/RestaurantManagement
+
         button2.addActionListener(e -> {
             SwingUtilities.invokeLater(() -> {
                 RestaurantManagementGUI restGUI = new RestaurantManagementGUI();
                 restGUI.setVisible(true);
-<<<<<<< HEAD
+
                 frame.setVisible(false);
 
                 //Exit prompt
@@ -118,24 +117,7 @@ public class gui{
             });
         });
         frame.setVisible(true);
-=======
->>>>>>> origin/RestaurantManagement
 
-                //退出提示
-                restGUI.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-                restGUI.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosing(WindowEvent e) {
-                        int value = JOptionPane.showConfirmDialog(restGUI,"Do you want to exit?","Hint",JOptionPane.YES_NO_OPTION);
-                        if (value == JOptionPane.OK_OPTION){
-                            restGUI.dispose();
-                        }
-                    }
-                });
-
-            });
-        });
-        frame.setVisible(true);
 
 
 
