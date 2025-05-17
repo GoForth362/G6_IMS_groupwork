@@ -1,6 +1,8 @@
 package GUI;
 
 import javax.swing.*;
+
+import ZooManagement.ZooManagementGUI;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -44,7 +46,25 @@ public class gui{
         JButton button4 = new JButton("Shape Parsing & Analysis");
         frame.add(button4);
 
+        button1.addActionListener(e -> {
+            ZooManagementGUI zooGUI = new ZooManagementGUI();
+            zooGUI.setVisible(true);
+            frame.setVisible(false);
 
+            //退出提示
+            zooGUI.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+            zooGUI.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    int value = JOptionPane.showConfirmDialog(zooGUI,"Do you want to exit?","Hint",JOptionPane.YES_NO_OPTION);
+                    if (value == JOptionPane.OK_OPTION){
+                        zooGUI.dispose();
+                        frame.setVisible(true);
+                    }
+                }
+            });
+
+        });
 
 
 
