@@ -5,14 +5,10 @@
 
 package ShapeManagement.bounceboxframework;
 
-import javax.swing.*;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.JFrame;
 
-/**
- *
- * @author ashongtical
- */
 public class BounceView implements Observer  {
     
     private JFrame frame;
@@ -38,5 +34,9 @@ public class BounceView implements Observer  {
  
     public void addDrawable(Drawable d) {
         panel.addDrawable(d);
+    }
+
+    public BouncePanel getPanel() {
+        return panel;
     }
 }

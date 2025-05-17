@@ -5,11 +5,13 @@
 
 package ShapeManagement.bouncebox;
 
-import ShapeManagement.bounceboxframework.*;
 import ShapeManagement.bounceboxframework.Shape;
+import java.awt.Graphics2D;
 
-import java.awt.*;
-
+/**
+ *
+ * @author ashongtical
+ */
 public class Circle extends Shape {
     
     private int r;
@@ -22,7 +24,12 @@ public class Circle extends Shape {
     
     public double getContactRadius() {return r;}
     public double getMass() {return Math.PI*r*r;}
-    
+
+    @Override
+    public double getArea() {
+        return Math.PI * r * r;
+    }
+
     public void draw(Graphics2D g) {
         g.setColor(getColor());
         double left = getX() - getRadius();

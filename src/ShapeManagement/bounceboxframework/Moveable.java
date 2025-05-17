@@ -5,10 +5,6 @@
  */
 package ShapeManagement.bounceboxframework;
 
-/**
- *
- * @author ashongtical
- */
 public interface Moveable {
     public void move(double  time);
     public double getX();

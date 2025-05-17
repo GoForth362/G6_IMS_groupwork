@@ -5,15 +5,14 @@
 
 package ShapeManagement.bounceboxframework;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.LinkedList;
 import java.util.List;
+import javax.swing.JPanel;
 
-/**
- *
- * @author ashongtical
- */
 public class BouncePanel extends JPanel {
     private int width;
     private int height;
@@ -40,6 +39,10 @@ public class BouncePanel extends JPanel {
     
     public void addDrawable(Drawable d) {
         drawshapes.add(d);
-  
     }
+
+    public void clearDrawables() {
+    drawshapes.clear();
+}
+
 }

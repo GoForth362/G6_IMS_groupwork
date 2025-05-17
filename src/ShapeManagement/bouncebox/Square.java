@@ -5,10 +5,8 @@
 
 package ShapeManagement.bouncebox;
 
-import ShapeManagement.bounceboxframework.*;
 import ShapeManagement.bounceboxframework.Shape;
-
-import java.awt.*;
+import java.awt.Graphics2D;
 
 /**
  *
@@ -29,6 +27,12 @@ public class Square extends Shape {
     
     public double getContactRadius() {return contactRadius;}
     public double getMass() {return width*width;}
+
+    @Override
+    public double getArea() {
+        return width * width;
+    }
+
     public void draw(Graphics2D g) {
         g.setColor(getColor());
        
