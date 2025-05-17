@@ -5,6 +5,7 @@ import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import RestaurantManagement.RestaurantManagementGUI;
 
 public class gui{
     public static void main(String[] args) throws Exception {
@@ -44,7 +45,26 @@ public class gui{
         JButton button4 = new JButton("Shape Parsing & Analysis");
         frame.add(button4);
 
+        button2.addActionListener(e -> {
+            SwingUtilities.invokeLater(() -> {
+                RestaurantManagementGUI restGUI = new RestaurantManagementGUI();
+                restGUI.setVisible(true);
 
+                //退出提示
+                restGUI.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+                restGUI.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        int value = JOptionPane.showConfirmDialog(restGUI,"Do you want to exit?","Hint",JOptionPane.YES_NO_OPTION);
+                        if (value == JOptionPane.OK_OPTION){
+                            restGUI.dispose();
+                        }
+                    }
+                });
+
+            });
+        });
+        frame.setVisible(true);
 
 
 
