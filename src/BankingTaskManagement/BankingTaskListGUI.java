@@ -35,12 +35,12 @@ public class BankingTaskListGUI extends JFrame{
         initializeFrame();
     }
 
-    public static void main(String[] args) {
-        // Ensure GUI is created on Event
-        SwingUtilities.invokeLater(() -> {
-            new BankingTaskListGUI().setVisible(true);
-        });
-    }
+//    public static void main(String[] args) {
+//        // Ensure GUI is created on Event
+//        SwingUtilities.invokeLater(() -> {
+//            new BankingTaskListGUI().setVisible(true);
+//        });
+//    }
 
     private void initializeFrame() {
         setTitle("Banking Task Management System");

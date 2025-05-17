@@ -210,10 +210,10 @@ public class RestaurantManagementGUI extends JFrame{
         orderDisplayArea.append("\nTotal: RMB" + total);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new RestaurantManagementGUI().setVisible(true);
-        });
-    }
+//    public static void main(String[] args) {
+//        SwingUtilities.invokeLater(() -> {
+//            new RestaurantManagementGUI().setVisible(true);
+//        });
+//    }
 }
 
