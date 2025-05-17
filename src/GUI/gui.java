@@ -2,6 +2,8 @@ package GUI;
 
 import javax.swing.*;
 
+import BankingTaskManagement.BankingTaskListGUI;
+import RestaurantManagement.RestaurantManagementGUI;
 import ZooManagement.ZooManagementGUI;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import java.awt.*;
@@ -39,9 +41,9 @@ public class gui{
         //Add button
         JButton button1 = new JButton("Zoo Management");
         frame.add(button1);
-        JButton button2 = new JButton("Banking Task Management");
+        JButton button2 = new JButton("Restaurant Management");
         frame.add(button2);
-        JButton button3 = new JButton("Restaurant Management");
+        JButton button3 = new JButton("Banking Task Management");
         frame.add(button3);
         JButton button4 = new JButton("Shape Parsing & Analysis");
         frame.add(button4);
@@ -51,7 +53,7 @@ public class gui{
             zooGUI.setVisible(true);
             frame.setVisible(false);
 
-            //退出提示
+            //Exit prompt
             zooGUI.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
             zooGUI.addWindowListener(new WindowAdapter() {
                 @Override
@@ -66,14 +68,74 @@ public class gui{
 
         });
 
+        button2.addActionListener(e -> {
+            SwingUtilities.invokeLater(() -> {
+                RestaurantManagementGUI restGUI = new RestaurantManagementGUI();
+                restGUI.setVisible(true);
+                frame.setVisible(false);
 
+                //Exit prompt
+                restGUI.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+                restGUI.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        int value = JOptionPane.showConfirmDialog(restGUI,"Do you want to exit?","Hint",JOptionPane.YES_NO_OPTION);
+                        if (value == JOptionPane.OK_OPTION){
+                            restGUI.dispose();
+                            frame.setVisible(true);
+                        }
+                    }
+                });
 
+            });
+        });
+        frame.setVisible(true);
 
+        button3.addActionListener(e -> {
+            SwingUtilities.invokeLater(() -> {
+                BankingTaskListGUI bankGUI = new BankingTaskListGUI();
+                bankGUI.setVisible(true);
+                frame.setVisible(false);
 
+                //Exit prompt
+                bankGUI.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+                bankGUI.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        int value = JOptionPane.showConfirmDialog(bankGUI,"Do you want to exit?","Hint",JOptionPane.YES_NO_OPTION);
+                        if (value == JOptionPane.OK_OPTION){
+                            bankGUI.dispose();
+                            frame.setVisible(true);
+                        }
+                    }
+                });
 
+            });
+        });
+        frame.setVisible(true);
 
+        button4.addActionListener(e -> {
+            SwingUtilities.invokeLater(() -> {
+                RestaurantManagementGUI spaGUI = new RestaurantManagementGUI();
+                spaGUI.setVisible(true);
+                frame.setVisible(false);
 
+                //Exit prompt
+                spaGUI.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+                spaGUI.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        int value = JOptionPane.showConfirmDialog(spaGUI,"Do you want to exit?","Hint",JOptionPane.YES_NO_OPTION);
+                        if (value == JOptionPane.OK_OPTION){
+                            spaGUI.dispose();
+                            frame.setVisible(true);
+                        }
+                    }
+                });
 
+            });
+        });
+        frame.setVisible(true);
 
     }
 }
