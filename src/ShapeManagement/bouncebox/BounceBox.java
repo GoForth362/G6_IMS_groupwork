@@ -7,6 +7,10 @@ package ShapeManagement.bouncebox;
 
 import ShapeManagement.bounceboxframework.*;
 
+/**
+ *
+ * @author ashongtical
+ */
 public class BounceBox {
     BounceModel model;
     BounceView view;
@@ -25,17 +29,17 @@ public class BounceBox {
         view = new BounceView(width, height, model);
         controller = new BounceController(model, TIMER_INTERVAL);
     }
-    
-  
+
     public void addShape(Shape s) {
         model.addShape(s);
         view.addDrawable(s);
     }
-    
-   
-    
+
     public void start() {
         controller.start();
     }
 
+    public BounceView getView() {
+        return view;
+    }
 }

@@ -5,12 +5,8 @@
 
 package ShapeManagement.bounceboxframework;
 
-import java.awt.*;
+import java.awt.Color;
 
-/**
- *
- * @author ashongtical
- */
 public abstract class Shape implements Drawable, Moveable{
     private double x;
     private double y;
@@ -51,15 +47,7 @@ public abstract class Shape implements Drawable, Moveable{
         vx -= 2*nx*dot/(absn*absn);
         vy -= 2*ny*dot/(absn*absn);
     }
-    
-    /**
-     * Interact with a wall bounding the space ax+by+c>0 in which the shape can
-     * We assume (a,b) is normalised
-     * move
-     * @param a
-     * @param b
-     * @param c
-     */
+
     public void interactWall(Wall wall) {
         double a = wall.getA();
         double b = wall.getB();
@@ -117,5 +105,5 @@ public abstract class Shape implements Drawable, Moveable{
     
     public abstract double getContactRadius();
     public abstract double getMass();
-    
+    public abstract double getArea();
 }

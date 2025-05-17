@@ -5,14 +5,10 @@
 
 package ShapeManagement.bounceboxframework;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.Timer;
 
-/**
- *
- * @author ashongtical
- */
 public class BounceController implements ActionListener {
     BounceModel model;
     Timer timer;
