@@ -7,8 +7,8 @@ import java.awt.event.ActionEvent;
 // Main window class (the only public class)
 public class ZooManagementGUI extends JFrame{
     // Initialize two zoo instances
-    private static Zoo southernZone = new Zoo("Southern-Zone Zoo");
-    private static Zoo northernZone = new Zoo("Northern-Zone Zoo");
+    protected static Zoo southernZone = new Zoo("Southern-Zone Zoo");
+    protected static Zoo northernZone = new Zoo("Northern-Zone Zoo");
 
     public ZooManagementGUI() {
         setTitle("Zoo Management System");

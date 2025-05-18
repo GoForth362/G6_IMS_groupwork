@@ -2,7 +2,7 @@ package GUI;
 
 import javax.swing.*;
 
-import BankingTaskManagement.BankingTaskListGUI;
+import BankingTaskManagement.BankingTaskManagementGUI;
 import RestaurantManagement.RestaurantManagementGUI;
 import ZooManagement.ZooManagementGUI;
 import ShapeManagement.ShapeManagementGUI;
@@ -97,7 +97,7 @@ public class gui{
 
         button3.addActionListener(e -> {
             SwingUtilities.invokeLater(() -> {
-                BankingTaskListGUI bankGUI = new BankingTaskListGUI();
+                BankingTaskManagementGUI bankGUI = new BankingTaskManagementGUI();
                 bankGUI.setVisible(true);
                 frame.setVisible(false);
 

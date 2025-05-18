@@ -4,84 +4,58 @@ import javax.swing.*;
 import java.awt.*;
 import java.text.DecimalFormat;
 
-public class BankingTaskListGUI extends JFrame{
-        // Main components
+public class BankingTaskManagementGUI extends JFrame{
+    public JButton processTransactionButton;
+    public JButton createAccountButton;
+
     protected JFrame frame;
     protected BankingTaskManager taskManager;
 
-    // Account Creation Panel Components
-    private JTextField accountNumberField,initialBalanceField,interestRateField;
+    protected JTextField accountNumberField, initialBalanceField, interestRateField;
+    protected JTextField transactionAccountField, transactionAmountField;
+    protected JComboBox<String> transactionTypeCombo;
 
-    // Transaction Panel Components
-    private JTextField transactionAccountField,transactionAmountField;
-    private JComboBox<String> transactionTypeCombo;
+    protected DefaultListModel<String> highPriorityModel, lowPriorityModel;
+    protected JList<String> highPriorityList, lowPriorityList;
+    protected JTextField taskInputField;
 
-    // Task List Components
-    private DefaultListModel<String> highPriorityModel,lowPriorityModel;
-    private JList<String> highPriorityList,lowPriorityList;
-    private JTextField taskInputField;
-
-    // Formatting
     protected DecimalFormat currencyFormat;
 
-    public BankingTaskListGUI() {
-        // Initialize task manager
+    public BankingTaskManagementGUI() {
         taskManager = new BankingTaskManager();
-
-        // Initialize currency formatter
         currencyFormat = new DecimalFormat("RMB #,##0.00");
-
-        // Create and setup the main frame
         initializeFrame();
     }
 
-//    public static void main(String[] args) {
-//        // Ensure GUI is created on Event
-//        SwingUtilities.invokeLater(() -> {
-//            new BankingTaskListGUI().setVisible(true);
-//        });
-//    }
-
-    private void initializeFrame() {
+    protected void initializeFrame() {
         setTitle("Banking Task Management System");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null); // 居中显示
-        //设置鼠标
+        setLocationRelativeTo(null);
         setCursor(new Cursor(Cursor.HAND_CURSOR));
         setLayout(new BorderLayout(10, 10));
 
-        // Create main panels
-        JPanel accountCreationPanel = createAccountCreationPanel();
-        JPanel transactionPanel = createTransactionPanel();
-        JPanel taskManagementPanel = createTaskManagementPanel();
-
-        // Add panels to frame
-        add(accountCreationPanel, BorderLayout.NORTH);
-        add(transactionPanel, BorderLayout.CENTER);
-        add(taskManagementPanel, BorderLayout.SOUTH);
+        add(createAccountCreationPanel(), BorderLayout.NORTH);
+        add(createTransactionPanel(), BorderLayout.CENTER);
+        add(createTaskManagementPanel(), BorderLayout.SOUTH);
     }
 
-    private JPanel createAccountCreationPanel() {
+    protected JPanel createAccountCreationPanel() {
         JPanel panel = new JPanel(new FlowLayout());
         panel.setBorder(BorderFactory.createTitledBorder("Create Bank Account"));
 
-        // Account Number
         panel.add(new JLabel("Account Number:"));
         accountNumberField = new JTextField(10);
         panel.add(accountNumberField);
 
-        // Initial Balance
         panel.add(new JLabel("Initial Balance:"));
         initialBalanceField = new JTextField(10);
         panel.add(initialBalanceField);
 
-        // Interest Rate
         panel.add(new JLabel("Annual Interest Rate (%):"));
         interestRateField = new JTextField(5);
         panel.add(interestRateField);
 
-        // Create Account Button
         JButton createAccountButton = new JButton("Create Account");
         createAccountButton.addActionListener(e -> createAccount());
         panel.add(createAccountButton);
@@ -89,61 +63,54 @@ public class BankingTaskListGUI extends JFrame{
         return panel;
     }
 
-    private void createAccount() {
+    protected void createAccount() {
         try {
             String accountNumber = accountNumberField.getText().trim();
             double initialBalance = Double.parseDouble(initialBalanceField.getText().trim());
             double interestRate = Double.parseDouble(interestRateField.getText().trim()) / 100;
 
-            // Create account
             taskManager.createAccount(accountNumber, initialBalance, interestRate);
 
-            // Show success message
-            JOptionPane.showMessageDialog(frame, 
+            JOptionPane.showMessageDialog(frame,
                 "Account Created:\n" +
                 "Number: " + accountNumber + "\n" +
                 "Initial Balance: " + currencyFormat.format(initialBalance) + "\n" +
                 "Interest Rate: " + (interestRate * 100) + "%",
-                "Account Creation Successful", 
+                "Account Creation Successful",
                 JOptionPane.INFORMATION_MESSAGE);
 
-            // Clear input fields
             accountNumberField.setText("");
             initialBalanceField.setText("");
             interestRateField.setText("");
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(frame, 
+            JOptionPane.showMessageDialog(frame,
                 "Please enter valid numbers for balance and interest rate.",
-                "Invalid Input", 
+                "Invalid Input",
                 JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(frame, 
+            JOptionPane.showMessageDialog(frame,
                 "Error creating account: " + ex.getMessage(),
-                "Account Creation Error", 
+                "Account Creation Error",
                 JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    private JPanel createTransactionPanel() {
+    protected JPanel createTransactionPanel() {
         JPanel panel = new JPanel(new FlowLayout());
         panel.setBorder(BorderFactory.createTitledBorder("Banking Transactions"));
 
-        // Account Number
         panel.add(new JLabel("Account Number:"));
         transactionAccountField = new JTextField(10);
         panel.add(transactionAccountField);
 
-        // Transaction Amount
         panel.add(new JLabel("Amount:"));
         transactionAmountField = new JTextField(10);
         panel.add(transactionAmountField);
 
-        // Transaction Type
         String[] transactionTypes = {"Deposit", "Withdraw"};
         transactionTypeCombo = new JComboBox<>(transactionTypes);
         panel.add(transactionTypeCombo);
 
-        // Transaction Button
         JButton transactionButton = new JButton("Process Transaction");
         transactionButton.addActionListener(e -> processTransaction());
         panel.add(transactionButton);
@@ -151,13 +118,12 @@ public class BankingTaskListGUI extends JFrame{
         return panel;
     }
 
-    private void processTransaction() {
+    protected void processTransaction() {
         try {
             String accountNumber = transactionAccountField.getText().trim();
             double amount = Double.parseDouble(transactionAmountField.getText().trim());
             String transactionType = (String) transactionTypeCombo.getSelectedItem();
 
-            // Perform transaction
             if ("Deposit".equals(transactionType)) {
                 taskManager.deposit(accountNumber, amount);
                 updateTaskLists();
@@ -166,34 +132,31 @@ public class BankingTaskListGUI extends JFrame{
                 updateTaskLists();
             }
 
-            // Show success message
-            JOptionPane.showMessageDialog(frame, 
-                transactionType + " of " + currencyFormat.format(amount) + 
+            JOptionPane.showMessageDialog(frame,
+                transactionType + " of " + currencyFormat.format(amount) +
                 " to Account " + accountNumber + " successful!",
-                "Transaction Completed", 
+                "Transaction Completed",
                 JOptionPane.INFORMATION_MESSAGE);
 
-            // Clear input fields
             transactionAccountField.setText("");
             transactionAmountField.setText("");
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(frame, 
+            JOptionPane.showMessageDialog(frame,
                 "Please enter a valid transaction amount.",
-                "Invalid Input", 
+                "Invalid Input",
                 JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(frame, 
+            JOptionPane.showMessageDialog(frame,
                 "Transaction failed: " + ex.getMessage(),
-                "Transaction Error", 
+                "Transaction Error",
                 JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    private JPanel createTaskManagementPanel() {
+    protected JPanel createTaskManagementPanel() {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(BorderFactory.createTitledBorder("Task Management"));
 
-        // Task Input Panel
         JPanel inputPanel = new JPanel(new FlowLayout());
         taskInputField = new JTextField(20);
         JButton addTaskButton = new JButton("Add Task");
@@ -202,7 +165,6 @@ public class BankingTaskListGUI extends JFrame{
         inputPanel.add(taskInputField);
         inputPanel.add(addTaskButton);
 
-        // Task Lists
         highPriorityModel = new DefaultListModel<>();
         lowPriorityModel = new DefaultListModel<>();
         highPriorityList = new JList<>(highPriorityModel);
@@ -212,7 +174,6 @@ public class BankingTaskListGUI extends JFrame{
         listPanel.add(new JScrollPane(highPriorityList));
         listPanel.add(new JScrollPane(lowPriorityList));
 
-        // Buttons for task management
         JPanel buttonPanel = new JPanel(new FlowLayout());
         JButton removeTaskButton = new JButton("Remove Task");
         JButton changeTaskPriorityButton = new JButton("Change Priority");
@@ -221,7 +182,6 @@ public class BankingTaskListGUI extends JFrame{
         buttonPanel.add(removeTaskButton);
         buttonPanel.add(changeTaskPriorityButton);
 
-        // Assemble task management panel
         panel.add(inputPanel, BorderLayout.NORTH);
         panel.add(listPanel, BorderLayout.CENTER);
         panel.add(buttonPanel, BorderLayout.SOUTH);
@@ -229,7 +189,7 @@ public class BankingTaskListGUI extends JFrame{
         return panel;
     }
 
-    private void addTask() {
+    protected void addTask() {
         String task = taskInputField.getText().trim();
         if (!task.isEmpty()) {
             taskManager.addTask(task);
@@ -238,7 +198,7 @@ public class BankingTaskListGUI extends JFrame{
         }
     }
 
-    private void removeTask() {
+    protected void removeTask() {
         if (!highPriorityList.isSelectionEmpty()) {
             int index = highPriorityList.getSelectedIndex();
             taskManager.removeTask("high", index);
@@ -249,7 +209,7 @@ public class BankingTaskListGUI extends JFrame{
         updateTaskLists();
     }
 
-    private void changePriority() {
+    protected void changePriority() {
         if (!highPriorityList.isSelectionEmpty()) {
             int index = highPriorityList.getSelectedIndex();
             taskManager.changePriority("high", index);
@@ -260,14 +220,14 @@ public class BankingTaskListGUI extends JFrame{
         updateTaskLists();
     }
 
-    private void updateTaskLists() {
+    protected void updateTaskLists() {
         highPriorityModel.clear();
         lowPriorityModel.clear();
-        
+
         for (String task : taskManager.getHighPriorityTasks()) {
             highPriorityModel.addElement(task);
         }
-        
+
         for (String task : taskManager.getLowPriorityTasks()) {
             lowPriorityModel.addElement(task);
         }
