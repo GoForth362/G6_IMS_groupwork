@@ -22,7 +22,7 @@ public class ShapeManagementGUI extends JFrame {
     protected BounceModel model;
     protected JButton loadFileButton, calculateAreaButton;
     protected Timer timer;
-    private BouncePanel bouncePanel;
+    protected BouncePanel bouncePanel;
 
     public ShapeManagementGUI() {
         super("Shape Parsing & Analysis");
@@ -61,11 +61,11 @@ public class ShapeManagementGUI extends JFrame {
         setVisible(true);
     }
 
-    private void startAnimationAction(ActionEvent e) {
+    protected void startAnimationAction(ActionEvent e) {
         model.moveShapes(BounceBox.TIMER_INTERVAL / 1000.0);
     }
 
-    private void loadShapesFromFile(String filename) {
+    protected void loadShapesFromFile(String filename) {
         try (Scanner scanner = new Scanner(new FileInputStream(filename))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine().trim();
@@ -96,7 +96,7 @@ public class ShapeManagementGUI extends JFrame {
         }
     }
 
-    private void handleCircle(String[] parts) {
+    protected void handleCircle(String[] parts) {
         if (parts.length < 4) return;
 
         int x = Integer.parseInt(parts[1]);
@@ -121,7 +121,7 @@ public class ShapeManagementGUI extends JFrame {
         bouncePanel.addDrawable(circle);
     }
 
-    private void handleSquare(String[] parts) {
+    protected void handleSquare(String[] parts) {
         if (parts.length < 4) return;
 
         int x = Integer.parseInt(parts[1]);
@@ -146,7 +146,7 @@ public class ShapeManagementGUI extends JFrame {
         bouncePanel.addDrawable(square);
     }
 
-    private void handleRectangle(String[] parts) {
+    protected void handleRectangle(String[] parts) {
         if (parts.length < 5) return;
 
         int x = Integer.parseInt(parts[1]);
@@ -172,7 +172,7 @@ public class ShapeManagementGUI extends JFrame {
         bouncePanel.addDrawable(rectangle);
     }
 
-    private void handleTriangle(String[] parts) {
+    protected void handleTriangle(String[] parts) {
         if (parts.length < 5) return;
 
         int x = Integer.parseInt(parts[1]);
@@ -198,7 +198,7 @@ public class ShapeManagementGUI extends JFrame {
         bouncePanel.addDrawable(triangle);
     }
 
-    private void loadShapesFromUserSelectedFile() {
+    protected void loadShapesFromUserSelectedFile() {
         JFileChooser fileChooser = new JFileChooser();
         int returnValue = fileChooser.showOpenDialog(this);
 
@@ -213,7 +213,7 @@ public class ShapeManagementGUI extends JFrame {
         }
     }
 
-    private void calculateAndShowTotalArea() {
+    protected void calculateAndShowTotalArea() {
         List<Shape> shapes = model.getShapes();
         double totalArea = 0;
 

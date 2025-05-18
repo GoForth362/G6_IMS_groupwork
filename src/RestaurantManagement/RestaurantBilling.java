@@ -27,24 +27,20 @@ public class RestaurantBilling extends RestaurantBillingSystem {
     //Constructor to initialize order list and meal quantities map
 
 
-    @Override
+       @Override
     public boolean addMealToOrder(String mealName) {
         for (Meal meal : menu){
             if (meal.getName().equals(mealName)){
                 order.add(meal);
-                if (mealQuantities.containsKey(meal)){
-                Integer currentValue = mealQuantities.get(meal);
-                int updatedValue = currentValue + 1;
-                mealQuantities.put(meal,updatedValue);
-                }else {
-                    mealQuantities.put(meal,1);
-                }
+
+                mealQuantities.put(meal, mealQuantities.getOrDefault(meal, 0) + 1);
                 return true;
             }
         }
-        System.out.println("Menu '" + mealName + "'not found on the menu.");
+        System.out.println("Menu '" + mealName + "' not found on the menu.");
         return false;
     }
+
     //Add a meal from the menu to the customer's order
     // mealName: The name of the meal to add
     //return true if meal was added successfully, false otherwise
@@ -52,11 +48,12 @@ public class RestaurantBilling extends RestaurantBillingSystem {
     @Override
     public double calculateBill() {
         double total = 0;
-        for (Meal meal : order){
-            total = total + meal.getPrice();
+        for (Map.Entry<Meal, Integer> entry : mealQuantities.entrySet()) {
+            total += entry.getKey().getPrice() * entry.getValue();
         }
         return total;
     }
+
     //Override the calculateBill() and calculate the total bill for the customer's order
     //return the total bill amount
 
@@ -90,5 +87,5 @@ public class RestaurantBilling extends RestaurantBillingSystem {
     //customerName: The name of the customer
     //return String representation of the bill
     
-    
+
 }

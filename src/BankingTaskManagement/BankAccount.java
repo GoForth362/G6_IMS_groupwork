@@ -1,19 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package BankingTaskManagement;
 
 public class BankAccount {
     private double balance;
-    public double annualInterestRate;
+    private double annualInterestRate;
     private int depositsCount;
     private int withdrawalsCount;
     private double monthlyServiceCharges;
 
-
-    //initialise by setting values of balance, annual Interest Rate, deposit count, monthlyservice charges, withdrawal count
-    BankAccount(double balance, double annualInterestRate) {
+    // Constructor
+    public BankAccount(double balance, double annualInterestRate) {
         this.balance = balance;
         this.annualInterestRate = annualInterestRate;
         this.depositsCount = 0;
@@ -21,35 +16,30 @@ public class BankAccount {
         this.monthlyServiceCharges = 0;
     }
 
-    // The Deposit method to put 
-    // check if amount to be deposited is 0 or less otherwise add amount to balance
+    // Deposit method
     public void deposit(double amount) {
-        if (amount > 0){
-            balance = balance + amount;
+        if (amount > 0) {
+            balance += amount;
             depositsCount++;
-        }
-        else {
-            System.out.println("deposited is 0 or less");
+        } else {
+            System.out.println("Deposit amount must be greater than 0.");
         }
     }
 
-    // Withdraw method to take money from the bank
-    // check if balance is less than RMB 25 and deny withdrawal
-    // 
+    // Withdraw method
     public void withdraw(double amount) {
-        if (amount > 0 && balance > amount){
-            balance = balance - amount;
+        if (amount > 0 && balance > amount) {
+            balance -= amount;
             withdrawalsCount++;
-        }
-        else {
-            System.out.println("not sufficient funds");
+        } else {
+            System.out.println("Insufficient funds for withdrawal.");
         }
     }
 
     // Calculate monthly interest
     public void calcInterest() {
-        double monthInterestRate = Math.pow(1+annualInterestRate/100,1/12)-1;
-        balance = balance*(1+monthInterestRate);
+        double monthInterestRate = Math.pow(1 + annualInterestRate / 100, 1.0 / 12) - 1;
+        balance = balance * (1 + monthInterestRate);
     }
 
     // Monthly processing
@@ -69,7 +59,25 @@ public class BankAccount {
         System.out.println("Withdrawals this month: " + withdrawalsCount);
     }
 
+    // Getters
     public double getBalance() {
         return balance;
     }
+
+    public double getAnnualInterestRate() {
+        return annualInterestRate;
+    }
+
+    public int getDepositsCount() {
+        return depositsCount;
+    }
+
+    public int getWithdrawalsCount() {
+        return withdrawalsCount;
+    }
+
+    public double getMonthlyServiceCharges() {
+        return monthlyServiceCharges;
+    }
+
 }

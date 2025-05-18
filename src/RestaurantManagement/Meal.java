@@ -41,9 +41,10 @@ public class Meal implements Priceable {
     @Override
     public String toString() {
         double price = getPrice();
-        return  name + " - RMB" + price + "\n" +
-                " Ingredients: " + getIngredients();
+        return name + " - RMB" + price + "\n" +
+               "Ingredients: " + getIngredients();
     }
+
 
     @Override
     public double getPrice() {
