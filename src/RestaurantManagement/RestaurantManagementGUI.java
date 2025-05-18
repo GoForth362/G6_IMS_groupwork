@@ -2,9 +2,11 @@ package RestaurantManagement;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Map;
 
-public class RestaurantManagementGUI extends JFrame{
+public class RestaurantManagementGUI extends JFrame {
     protected RestaurantBilling billingSystem;
 
     protected JTextField mealNameField, ingredientNameField, ingredientPriceField;
@@ -17,14 +19,13 @@ public class RestaurantManagementGUI extends JFrame{
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        //Set up the mouse
         setCursor(new Cursor(Cursor.HAND_CURSOR));
         setLayout(new BorderLayout());
 
-        // Create a menu area
+        // Top Menu
         add(createTopMenu(), BorderLayout.NORTH);
 
-        // Left panel - Add dishes and order
+        // Left Panel - Add Meal & Order
         JPanel leftPanel = new JPanel(new GridLayout(5, 1, 10, 10));
         leftPanel.setBorder(BorderFactory.createTitledBorder("Manage Menu and Order"));
 
@@ -34,7 +35,7 @@ public class RestaurantManagementGUI extends JFrame{
         leftPanel.add(createBillPanel());
         leftPanel.add(createClearOrderPanel());
 
-        // Right panel - Displays menus and orders
+        // Right Panel - Display Areas
         JPanel rightPanel = new JPanel(new GridLayout(2, 1, 10, 10));
         rightPanel.setBorder(BorderFactory.createTitledBorder("Information Display"));
 
@@ -83,6 +84,38 @@ public class RestaurantManagementGUI extends JFrame{
         panel.add(ingredientPriceField);
         panel.add(new JLabel());
         panel.add(addButton);
+
+        // 添加 ActionListener 到 mealNameField（用于测试触发）
+        mealNameField.addActionListener(e -> {
+            try {
+                String mealName = mealNameField.getText().trim();
+                String ingName = ingredientNameField.getText().trim();
+                double price = Double.parseDouble(ingredientPriceField.getText().trim());
+
+                Ingredient ingredient = new Ingredient(ingName, price);
+                Meal meal = null;
+
+                boolean found = false;
+                for (Meal m : billingSystem.menu) {
+                    if (m.getName().equals(mealName)) {
+                        meal = m;
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found) {
+                    meal = new Meal(mealName);
+                    billingSystem.addMeal(meal);
+                }
+
+                meal.addIngredient(ingredient);
+                JOptionPane.showMessageDialog(this, "Added ingredient to meal: " + mealName);
+                refreshMenuDisplay();
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Please enter a valid price.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
 
         addButton.addActionListener(e -> {
             try {
@@ -135,7 +168,7 @@ public class RestaurantManagementGUI extends JFrame{
             } else {
                 JOptionPane.showMessageDialog(this, "Meal not found in menu.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-            refreshOrderDisplay();
+            refreshOrderDisplay(); // 强制刷新订单显示
         });
 
         return panel;
@@ -206,8 +239,42 @@ public class RestaurantManagementGUI extends JFrame{
         for (Map.Entry<Meal, Integer> entry : billingSystem.mealQuantities.entrySet()) {
             orderDisplayArea.append(entry.getKey().getName() + " x " + entry.getValue() + "\n");
         }
+
         double total = billingSystem.calculateBill();
         orderDisplayArea.append("\nTotal: RMB" + total);
     }
-}
 
+
+    public JTextField getMealNameField() {
+        return mealNameField;
+    }
+
+    public JTextField getIngredientNameField() {
+        return ingredientNameField;
+    }
+
+    public JTextField getIngredientPriceField() {
+        return ingredientPriceField;
+    }
+
+    public JTextArea getMenuDisplayArea() {
+        return menuDisplayArea;
+    }
+
+    public JTextArea getOrderDisplayArea() {
+        return orderDisplayArea;
+    }
+
+    public JButton getButtonByText(String text) {
+        for (Component comp : getContentPane().getComponents()) {
+            if (comp instanceof JPanel) {
+                for (Component c : ((JPanel) comp).getComponents()) {
+                    if (c instanceof JButton && ((JButton) c).getText().equals(text)) {
+                        return (JButton) c;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+}

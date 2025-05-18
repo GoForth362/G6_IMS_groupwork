@@ -22,12 +22,16 @@ public abstract class RestaurantBillingSystem {
 
 
     public void addMeal(Meal meal){
-        if (menu.contains(meal)){
+    for (Meal m : menu) {
+        if (m.getName().equals(meal.getName())) {
+            System.out.println("Meal '" + meal.getName() + "' already exists.");
             return;
+            }
         }
-        menu.add(meal);
-        System.out.println("Add '" + meal.getName() + "' to the menu.");
+    menu.add(meal);
+    System.out.println("Add '" + meal.getName() + "' to the menu.");
     }
+
     //Add a meal to the menu
     //meal: The meal to add
 
