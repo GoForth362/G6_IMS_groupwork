@@ -1,19 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package RestaurantManagement;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-/**
- * Restaurant billing implementation that handles 
- * customer orders and bill calculation
- * @author ashongtical
- */
 
 public class RestaurantBilling extends RestaurantBillingSystem {
 
@@ -86,6 +76,4 @@ public class RestaurantBilling extends RestaurantBillingSystem {
     //Generate a formatted bill for the customer
     //customerName: The name of the customer
     //return String representation of the bill
-    
-
 }

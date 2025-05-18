@@ -1,15 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package RestaurantManagement;
-
-/**
- * Meal class for managing meals composed of ingredients
- * name: the meals name
- * Ingredients: list of ingrdients
- * @author ashongtical
- */
 
 import java.util.*;
 public class Meal implements Priceable {

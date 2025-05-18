@@ -17,7 +17,6 @@ class BankingTaskManagementGUITest {
         gui = new BankingTaskManagementGUI();
         gui.setVisible(true);
 
-        // 验证关键组件是否非空
         assertNotNull(gui.accountNumberField);
         assertNotNull(gui.initialBalanceField);
         assertNotNull(gui.interestRateField);

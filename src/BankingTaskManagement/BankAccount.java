@@ -63,21 +63,4 @@ public class BankAccount {
     public double getBalance() {
         return balance;
     }
-
-    public double getAnnualInterestRate() {
-        return annualInterestRate;
-    }
-
-    public int getDepositsCount() {
-        return depositsCount;
-    }
-
-    public int getWithdrawalsCount() {
-        return withdrawalsCount;
-    }
-
-    public double getMonthlyServiceCharges() {
-        return monthlyServiceCharges;
-    }
-
 }

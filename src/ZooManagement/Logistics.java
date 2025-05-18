@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ZooManagement;
 
-/**
- * Logistics Class - Manages transportation details for animal movements
- * @author ashongtical
- */
 public class Logistics {
     public Item vehicle;
     public Item fuel;

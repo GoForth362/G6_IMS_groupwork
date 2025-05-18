@@ -1,13 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ZooManagement;
-
-/**
- * Zoo Class - Manages a collection of animals
- * @author ashongtical
- */
 
 public class Zoo {
     public String name;
