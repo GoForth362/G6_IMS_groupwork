@@ -42,7 +42,7 @@ public class ZooManagementGUI extends JFrame{
     // Main menu panel
     class MainMenuPanel extends JPanel {
         public MainMenuPanel() {
-            setLayout(new GridLayout(6, 1));
+            setLayout(new GridLayout(7, 1));
 
             JButton displaySouthern = new JButton("Display Southern-Zone Zoo Animals");
             JButton displayNorthern = new JButton("Display Northern-Zone Zoo Animals");
@@ -50,9 +50,11 @@ public class ZooManagementGUI extends JFrame{
             JButton addAnimal = new JButton("Add New Animal to a Zoo");
             JButton removeAnimal = new JButton("Remove Animal from a Zoo");
             JButton findAnimal = new JButton("Find an Animal");
+            JButton displayChart = new JButton("Display Animal Counts as Bar Chart");
 
             add(displaySouthern);
             add(displayNorthern);
+            add(displayChart);
             add(moveAnimal);
             add(addAnimal);
             add(removeAnimal);
@@ -60,6 +62,7 @@ public class ZooManagementGUI extends JFrame{
 
             displaySouthern.addActionListener(e -> new DisplayAnimalsDialog(southernZone));
             displayNorthern.addActionListener(e -> new DisplayAnimalsDialog(northernZone));
+            displayChart.addActionListener(e -> new AnimalCountChartDialog());
             moveAnimal.addActionListener(e -> new MoveAnimalDialog());
             addAnimal.addActionListener(e -> new AddAnimalDialog());
             removeAnimal.addActionListener(e -> new RemoveAnimalDialog());
@@ -105,6 +108,49 @@ public class ZooManagementGUI extends JFrame{
         }
     }
 
+    class AnimalCountChartDialog extends JDialog {
+        public AnimalCountChartDialog() {
+            super((Frame) null, "Animal Count Chart", true);
+            setSize(500, 400);
+            setLocationRelativeTo(null);
+            add(new AnimalCountChartPanel());
+            setVisible(true);
+        }
+
+        class AnimalCountChartPanel extends JPanel {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
+
+                // Set background color
+                setBackground(Color.WHITE);
+
+                // Zoo data
+                int southernCount = southernZone.getCounter();
+                int northernCount = northernZone.getCounter();
+
+                // Bar chart parameters
+                int barWidth = 80;
+                int maxBarHeight = 200;
+                int spacing = 100;
+                int startX = 100;
+                int startY = getHeight() - 50;
+
+                // Draw Southern-Zone bar
+                g2d.setColor(Color.BLUE);
+                int southernHeight = (int) ((double) southernCount / Math.max(southernCount, northernCount) * maxBarHeight);
+                g2d.fillRect(startX, startY - southernHeight, barWidth, southernHeight);
+                g2d.drawString("Southern-Zone: " + southernCount, startX, startY - southernHeight - 10);
+
+                // Draw Northern-Zone bar
+                g2d.setColor(Color.GREEN);
+                int northernHeight = (int) ((double) northernCount / Math.max(southernCount, northernCount) * maxBarHeight);
+                g2d.fillRect(startX + spacing, startY - northernHeight, barWidth, northernHeight);
+                g2d.drawString("Northern-Zone: " + northernCount, startX + spacing, startY - northernHeight - 10);
+            }
+        }
+    }
 
     //Add the animal dialog box
     class AddAnimalDialog extends JDialog {
