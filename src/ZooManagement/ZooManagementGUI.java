@@ -46,11 +46,11 @@ public class ZooManagementGUI extends JFrame{
 
             JButton displaySouthern = new JButton("Display Southern-Zone Zoo Animals");
             JButton displayNorthern = new JButton("Display Northern-Zone Zoo Animals");
+            JButton displayChart = new JButton("Display Animal Counts as Bar Chart");
             JButton moveAnimal = new JButton("Move Animal Between Zoos");
             JButton addAnimal = new JButton("Add New Animal to a Zoo");
             JButton removeAnimal = new JButton("Remove Animal from a Zoo");
             JButton findAnimal = new JButton("Find an Animal");
-            JButton displayChart = new JButton("Display Animal Counts as Bar Chart");
 
             add(displaySouthern);
             add(displayNorthern);

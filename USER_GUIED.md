@@ -30,7 +30,10 @@ After running the `ZooManagementGUI` class, the main window of the Zoo Managemen
 1. **Display Southern-Zone Zoo Animals**: Click this button to view a list of animals in the Southern-Zone Zoo.
 2. **Display Northern-Zone Zoo Animals**: Click this button to view a list of animals in the Northern-Zone Zoo.
 
-#### 3. Move Animal Between Zoos
+#### 3. Display Animals
+Click the "Display Animal Counts as Bar Chart" button.
+
+#### 4. Move Animal Between Zoos
 1. Click the "Move Animal Between Zoos" button.
 2. Select the zoo from which you want to move the animal.
 3. Select the animal you want to move.
@@ -38,19 +41,19 @@ After running the `ZooManagementGUI` class, the main window of the Zoo Managemen
 5. Enter the names of the caretakers when prompted.
 6. Click the "Confirm Move" button to move the animal.
 
-#### 4. Add New Animal to a Zoo
+#### 5. Add New Animal to a Zoo
 1. Click the "Add New Animal to a Zoo" button.
 2. Select the zoo where you want to add the animal.
 3. Enter the name, species, and age of the animal.
 4. Click the "Add Animal" button to add the animal to the selected zoo.
 
-#### 5. Remove Animal from a Zoo
+#### 6. Remove Animal from a Zoo
 1. Click the "Remove Animal from a Zoo" button.
 2. Select the zoo from which you want to remove the animal.
 3. Select the animal you want to remove.
 4. Click the "Remove" button to remove the animal from the selected zoo.
 
-#### 6. Find an Animal
+#### 7. Find an Animal
 1. Click the "Find an Animal" button.
 2. Enter the name of the animal you want to search for.
 3. Click the "Search" button. The system will display the location and details of the animal if found, or a "Not found" message if the animal is not in either zoo.
