@@ -29,7 +29,7 @@ public class BankingTaskManagementGUI extends JFrame{
 
     protected void initializeFrame() {
         setTitle("Banking Task Management System");
-        setSize(800, 600);
+        setSize(900, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setCursor(new Cursor(Cursor.HAND_CURSOR));
