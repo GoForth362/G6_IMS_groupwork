@@ -99,4 +99,8 @@ public class BankingTaskManager {
     public void updateTaskLists() {
         // This should be implemented in GUI class
     }
+    public boolean accountExists(String accountNumber) {
+    return accounts.containsKey(accountNumber);
+}
+
 }

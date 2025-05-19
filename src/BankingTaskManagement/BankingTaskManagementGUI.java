@@ -119,39 +119,48 @@ public class BankingTaskManagementGUI extends JFrame{
     }
 
     protected void processTransaction() {
-        try {
-            String accountNumber = transactionAccountField.getText().trim();
-            double amount = Double.parseDouble(transactionAmountField.getText().trim());
-            String transactionType = (String) transactionTypeCombo.getSelectedItem();
+    try {
+        String accountNumber = transactionAccountField.getText().trim();
+        double amount = Double.parseDouble(transactionAmountField.getText().trim());
+        String transactionType = (String) transactionTypeCombo.getSelectedItem();
 
-            if ("Deposit".equals(transactionType)) {
-                taskManager.deposit(accountNumber, amount);
-                updateTaskLists();
-            } else {
-                taskManager.withdraw(accountNumber, amount);
-                updateTaskLists();
-            }
-
+        if (!taskManager.accountExists(accountNumber)) {
             JOptionPane.showMessageDialog(frame,
-                transactionType + " of " + currencyFormat.format(amount) +
-                " to Account " + accountNumber + " successful!",
-                "Transaction Completed",
-                JOptionPane.INFORMATION_MESSAGE);
-
-            transactionAccountField.setText("");
-            transactionAmountField.setText("");
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(frame,
-                "Please enter a valid transaction amount.",
-                "Invalid Input",
+                "Account does not exist.",
+                "Error",
                 JOptionPane.ERROR_MESSAGE);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(frame,
-                "Transaction failed: " + ex.getMessage(),
-                "Transaction Error",
-                JOptionPane.ERROR_MESSAGE);
+            return;
         }
+
+        if ("Deposit".equals(transactionType)) {
+            taskManager.deposit(accountNumber, amount);
+            updateTaskLists();
+        } else {
+            taskManager.withdraw(accountNumber, amount);
+            updateTaskLists();
+        }
+
+        JOptionPane.showMessageDialog(frame,
+            transactionType + " of " + currencyFormat.format(amount) +
+            " to Account " + accountNumber + " successful!",
+            "Transaction Completed",
+            JOptionPane.INFORMATION_MESSAGE);
+
+        transactionAccountField.setText("");
+        transactionAmountField.setText("");
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(frame,
+            "Please enter a valid amount.",
+            "Invalid Input",
+            JOptionPane.ERROR_MESSAGE);
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(frame,
+            "Transaction failed: " + ex.getMessage(),
+            "Transaction Error",
+            JOptionPane.ERROR_MESSAGE);
     }
+}
+
 
     protected JPanel createTaskManagementPanel() {
         JPanel panel = new JPanel(new BorderLayout());
